@@ -11,7 +11,7 @@ EnzymeNoOpt := -no-vec -unroll=0
 app: main.f90
 	$(FORT) $(FORTFLAGS) $(EnzymeNoOpt) -O2 -c main.f90
 	@echo "\nCompiling done. Now linking, and AD\n"
-	$(LLVMDIS) main.o
+#	$(LLVMDIS) main.o
 #	$(LLVMOPT) main.o --load=$(LLVMEnzyme) --enable-new-pm=0 -enzyme -enzyme-globals-default-inactive=1 -o ad.o
 #	$(LLVMDIS) ad.o
 	$(FORT) $(FORTFLAGS) -O3 main.o -o app
