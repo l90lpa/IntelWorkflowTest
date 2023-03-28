@@ -1,15 +1,12 @@
-#FORT		:= mpiifort -fc=ifx
-FORT		:= ifx -flto -I/usr/lib/x86_64-linux-gnu/openmpi/lib/../../fortran/gfortran-mod-15/openmpi -I/usr/lib/x86_64-linux-gnu/openmpi/lib -L/usr/lib/x86_64-linux-gnu/openmpi/lib/fortran/gfortran -lmpi_usempif08 -lmpi_usempi_ignore_tkr -lmpi_mpifh -lmpi -lopen-rte -lopen-pal -lhwloc -levent_core -levent_pthreads -lm -lz
+FORT		:= mpiifort -fc=ifx
 LLVMLINK	:= llvm-link-15
 LLVMOPT		:= opt-15
 LLVMDIS		:= llvm-dis-15
 #LLVMEnzyme	:= /usr/local/lib/Enzyme/LLVMEnzyme-15.so
 LLVMEnzyme	:= /home/lpada/Projects/libs/Enzyme/enzyme/cmake-build-debug/Enzyme/LLVMEnzyme-15.so
 
-FORTFLAGS :=
-#+= -flto
-EnzymeNoOpt :=
-#:= -no-vec -unroll=0
+FORTFLAGS += -flto
+EnzymeNoOpt := -no-vec -unroll=0
 
 app: main.f90
 	$(FORT) $(FORTFLAGS) $(EnzymeNoOpt) -O2 -c main.f90
